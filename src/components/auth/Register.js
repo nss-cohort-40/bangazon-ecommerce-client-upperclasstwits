@@ -9,7 +9,8 @@ const Register = (props) => {
 	const lastName = useRef();
 	const password = useRef();
 	const firstName = useRef();
-	const familyMembers = useRef();
+	const address = useRef();
+	const phoneNumber = useRef();
 	const verifyPassword = useRef();
 	const { register } = useSimpleAuth();
 
