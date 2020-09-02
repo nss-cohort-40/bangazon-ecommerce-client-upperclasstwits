@@ -1,53 +1,63 @@
-import { useState } from "react";
+import React, { useRef } from "react";
+import "./Login.css";
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
-const useSimpleuth = () => {
-  const [loggedIn, setIsLoggedIn] = useState(false);
+const Login = (props) => {
+  const username = useRef();
+  const password = useRef();
+  const { login } = useSimpleAuth();
 
-  const isAuthenticated = () =>
-    loggedIn || localStorage.getItem("bangazon_token") !== null;
+  // Simplistic handler for login submit
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-  const register = (userInfo) => {
-    return fetch("http://127.0.0.1:8000/register/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if ("token" in res) {
-          localStorage.setItem("bangazon_token", res.token);
-          setIsLoggedIn(true);
-        }
+    /*
+            For now, just store the username and password that
+            the customer enters into local storage.
+        */
+    const credentials = {
+      username: username.current.value,
+      password: password.current.value,
+    };
+
+    login(credentials).then(() => {
+      props.history.push({
+        pathname: "/",
       });
+    });
   };
 
-  const login = (credentials) => {
-    return fetch("http://127.0.0.1:8000/login/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if ("valid" in res && res.valid && "token" in res) {
-          localStorage.setItem("bangazon_token", res.token);
-          setIsLoggedIn(true);
-        }
-      });
-  };
-
-  const logout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem("bangazon_token");
-  };
-
-  return { isAuthenticated, logout, login, register };
+  return (
+    <main style={{ textAlign: "center" }}>
+      <form className="form--login" onSubmit={handleLogin}>
+        <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <fieldset>
+          <label htmlFor="inputUsername"> Username </label>
+          <input
+            ref={username}
+            type="username"
+            className="form-control"
+            placeholder="Username"
+            required
+            autoFocus
+          />
+        </fieldset>
+        <fieldset>
+          <label htmlFor="inputPassword"> Password </label>
+          <input
+            ref={password}
+            type="password"
+            id="password"
+            className="form-control"
+            placeholder="Password"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <button type="submit">Sign in</button>
+        </fieldset>
+      </form>
+    </main>
+  );
 };
-
-export default useSimpleuth;
+export default Login;
