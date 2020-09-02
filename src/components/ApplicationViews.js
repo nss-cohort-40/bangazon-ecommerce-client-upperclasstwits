@@ -3,11 +3,11 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
-// import UserProductList from "./product/UserProductList";
-// import ProductList from "./product/ProductList";
-// import ProductForm from "./product/ProductForm";
-// import ProductDetail from "./product/ProductDetail";
-// import Cart from "./cart/Cart";
+import UserProductList from "./product/UserProductList";
+import ProductList from "./product/ProductList";
+import ProductForm from "./product/ProductForm";
+import ProductDetail from "./product/ProductDetail";
+import Cart from "./cart/Cart";
 
 const ApplicationViews = () => {
   return (
@@ -20,7 +20,7 @@ const ApplicationViews = () => {
               <h1>BANGAZON!</h1>
               <img
                 className="logonss"
-                src={require("./logonss.png")}
+                src={require("../logonss.png")}
                 alt="NSS"
               />
             </>

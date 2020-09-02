@@ -1,14 +1,17 @@
-import React from "react";
+import React from "react"
+import { Route } from "react-router-dom"
+import NavBar from "./nav/Nav"
+import ApplicationViews from "./ApplicationViews"
 
-function BangazonBuilder() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello Bangazon</p>
-        <p>An UpperClassTwit Production</p>
-      </header>
-    </div>
-  );
+const BangazonBuilder = () => {
+    return (
+        <React.Fragment>
+            <Route render={props => (
+                <NavBar {...props} />
+            )} />
+            <ApplicationViews />
+        </React.Fragment>
+    )
 }
 
-export default BangazonBuilder;
+export default BangazonBuilder
