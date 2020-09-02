@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -12,19 +11,6 @@ ReactDOM.render(
     <BangazonBuilder />
   </Router>,
   document.getElementById('root')
-=======
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import Bangazon from "./components/BangazonBuilder";
-import * as serviceWorker from "./serviceWorker";
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Bangazon />
-  </React.StrictMode>,
-  document.getElementById("root")
->>>>>>> master
 );
 
 // If you want your app to work offline and load faster, you can change
