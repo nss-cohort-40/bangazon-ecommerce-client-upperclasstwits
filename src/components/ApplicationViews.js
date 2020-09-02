@@ -20,7 +20,7 @@ const ApplicationViews = () => {
               <h1>BANGAZON!</h1>
               <img
                 className="logonss"
-                // src={require("./logonss.png")}
+                src={require("../logonss.png")}
                 alt="NSS"
               />
             </>
