@@ -40,12 +40,12 @@ const ProductDetail = (props) => {
   return (
     <>
       <h1>Title: {product.title} </h1>
-      <p>Customer: {product.customer.user.first_name}</p>
+      {/* <p>Customer: {product.customer.user.first_name}</p> */}
       <p>Price: ${product.price}</p>
       <p>Description: {product.description}</p>
-      <p>Quantity: {product.quantity} </p>
-      <p>Location: {product.location}</p>
-      <p>Product Type: {productType.name}</p>
+      {/* <p>Quantity: {product.quantity} </p> */}
+      {/* <p>Location: {product.location}</p> */}
+      {/* <p>Product Type: {productType.name}</p> */}
     </>
   );
 };
