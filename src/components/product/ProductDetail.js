@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 const ProductDetail = (props) => {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({
+    customer: {
+      user: {
+        first_name: "",
+      },
+    },
+  });
   const { isAuthenticated } = useSimpleAuth();
+  const [productType, setProductType] = useState({
+    name: "",
+  });
 
   const getProduct = () => {
     if (isAuthenticated()) {
@@ -15,7 +24,13 @@ const ProductDetail = (props) => {
         },
       })
         .then((response) => response.json())
+        // product from API
         .then((product) => {
+          console.table(product);
+          // console.table(customer);
+          // THe .product_type has to match what's coming from API
+          setProductType(product.product_type);
+
           setProduct(product);
         });
     }
@@ -25,12 +40,12 @@ const ProductDetail = (props) => {
   return (
     <>
       <h1>Title: {product.title} </h1>
-      <p>Customer: {product.customer_id}</p>
+      <p>Customer: {product.customer.user.first_name}</p>
       <p>Price: ${product.price}</p>
       <p>Description: {product.description}</p>
       <p>Quantity: {product.quantity} </p>
       <p>Location: {product.location}</p>
-      <p>Product Type: {product.product_type_id}</p>
+      <p>Product Type: {productType.name}</p>
     </>
   );
 };
