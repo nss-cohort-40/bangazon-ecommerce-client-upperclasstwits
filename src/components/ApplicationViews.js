@@ -62,7 +62,7 @@ const ApplicationViews = () => {
         }}
       />
       <Route
-        path="/products/new"
+        path="/products/sell-product"
         render={(props) => {
           return <ProductForm {...props} />;
         }}
