@@ -55,7 +55,7 @@ const ApplicationViews = () => {
         render={(props) => {
           return (
             <ProductDetail
-              productId={parseInt(props.match.params.productId)}
+              productId={props.match.params.productId}
               {...props}
             />
           );
