@@ -37,6 +37,7 @@ const useSimpleAuth = () => {
       .then((res) => {
         if ("valid" in res && res.valid && "token" in res) {
           localStorage.setItem("bangazon_token", res.token);
+          localStorage.setItem("credentials", credentials.username);
           setIsLoggedIn(true);
         }
       });
@@ -45,6 +46,7 @@ const useSimpleAuth = () => {
   const logout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("bangazon_token");
+    localStorage.removeItem("credentials");
   };
 
   return { isAuthenticated, logout, login, register };

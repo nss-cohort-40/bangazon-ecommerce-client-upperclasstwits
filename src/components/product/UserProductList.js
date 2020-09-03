@@ -5,6 +5,6 @@ const UserProducts = props => {
 
     const getUserProducts = () => {
 
-        fetch("http://localhost:8000/products?customer_id")
+        fetch("http://localhost:8000/products?customer_i")
     }
 }
