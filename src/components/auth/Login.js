@@ -5,7 +5,7 @@ import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 const Login = (props) => {
   const username = useRef();
   const password = useRef();
-  const { login, getUser } = useSimpleAuth();
+  const { login, getCustomer } = useSimpleAuth();
 
   // Simplistic handler for login submit
   const handleLogin = (e) => {
@@ -20,7 +20,9 @@ const Login = (props) => {
       password: password.current.value,
     };
 
-    login(credentials).then((result) => {
+    getCustomer();
+
+    login(credentials).then(() => {
       props.history.push({
         pathname: "/",
       });

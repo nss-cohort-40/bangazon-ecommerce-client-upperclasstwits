@@ -24,6 +24,20 @@ const useSimpleAuth = () => {
       });
   };
 
+  const getCustomer = () => {
+      return fetch("http://localhost:8000/customer", {
+          "method": "GET",
+          "headers": {
+              "Accept": "application/json",
+              "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+          }
+      })
+      .then(response => response.json())
+      .then((customer) => {
+          localStorage.setItem("activeUser", customer)
+      })
+  }
+
   const login = (credentials) => {
     return fetch("http://localhost:8000/login/", {
       method: "POST",
@@ -47,9 +61,10 @@ const useSimpleAuth = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("bangazon_token");
     localStorage.removeItem("credentials");
+    localStorage.removeItem("activeUser");
   };
 
-  return { isAuthenticated, logout, login, register };
+  return { isAuthenticated, logout, login, register, getCustomer };
 };
 
 export default useSimpleAuth;

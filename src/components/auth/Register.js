@@ -27,7 +27,7 @@ const Register = (props) => {
 			phone_number: phoneNumber.current.value,
 		};
 
-		register(newUser).then(() => 
+		register(newUser).then(() => {
 			props.history.push({
 				pathname: "/",
 			});
