@@ -12,7 +12,7 @@ const ProductList = (props) => {
       fetch("http://localhost:8000/products", {
         method: "GET",
         headers: {
-          Accept: "appliation/json",
+          Accept: "application/json",
           Authorization: `Token ${localStorage.getItem(
             "bangazon_token"
           )}`,
@@ -26,17 +26,11 @@ const ProductList = (props) => {
   useEffect(getProducts, []);
 
   return (
-    <>
-      <article className="productList">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            getProducts={getProducts}
-            product={product}
-          />
-        ))}
-      </article>
-    </>
+    <div className="productList">
+      {products.map((product) => (
+        <ProductCard key={`product-${product.id}`} product={product} />
+      ))}
+    </div>
   );
 };
 
