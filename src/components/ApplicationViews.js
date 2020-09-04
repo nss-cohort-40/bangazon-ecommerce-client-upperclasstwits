@@ -68,7 +68,7 @@ const ApplicationViews = () => {
         }}
       />
       <Route
-        path="/cart"
+        path="/products/cart"
         render={(props) => {
           return <Cart />;
         }}

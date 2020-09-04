@@ -4,33 +4,33 @@ import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 const ProductForm = (props) => {
   const [product, setProduct] = useState({
-        title: "",
-        price: "",
-        description: "",
-        quantity: "",
-        location: "",
-        // image_path: "",
-        productTypeId: ""
+    title: "",
+    price: "",
+    description: "",
+    quantity: "",
+    location: "",
+    // image_path: "",
+    productTypeId: "",
   });
   const [productTypes, setProductTypes] = useState([]);
   const { isAuthenticated } = useSimpleAuth();
 
   const getProductTypes = () => {
     if (isAuthenticated()) {
-        fetch("http://localhost:8000/producttype", {
+      fetch("http://localhost:8000/producttype", {
         method: "GET",
         headers: {
           Accept: "application/json",
           Authorization: `Token ${localStorage.getItem("bangazon_token")}`,
         },
       })
-      .then((response) => response.json())
-      .then((allTypes) => {
+        .then((response) => response.json())
+        .then((allTypes) => {
           setProductTypes(allTypes);
-      });
+        });
     }
-    }
-    
+  };
+
   useEffect(() => {
     getProductTypes();
   }, []);
@@ -42,7 +42,7 @@ const ProductForm = (props) => {
   };
 
   const constructNewProduct = (evt) => {
-      evt.preventDefault();
+    evt.preventDefault();
 
     if (
       product.title === "" ||
@@ -51,35 +51,36 @@ const ProductForm = (props) => {
       product.quantity === "" ||
       product.productTypeId === ""
     ) {
-      window.alert("Please complete title, price, description, quantity, and category");
+      window.alert(
+        "Please complete title, price, description, quantity, and category"
+      );
     } else {
-        const theProduct = {
-            title: product.title,
-            price: product.price,
-            description: product.description,
-            quantity: product.quantity,
-            location: product.location,
-            // image_path: product.image_path,
-            productTypeId: parseInt(product.productTypeId)
-        };
+      const theProduct = {
+        title: product.title,
+        price: product.price,
+        description: product.description,
+        quantity: product.quantity,
+        location: product.location,
+        // image_path: product.image_path,
+        productTypeId: parseInt(product.productTypeId),
+      };
 
-        fetch("http://localhost:8000/products", {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: `Token ${localStorage.getItem("bangazon_token")}`,
-            },
-            body: JSON.stringify(theProduct),
-          })
-            .then((response) => response.json())
-            .then(() => {
-              console.log("Added");
-              props.history.push("/products");
-            });
-        
-      }
-    };
+      fetch("http://localhost:8000/products", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Token ${localStorage.getItem("bangazon_token")}`,
+        },
+        body: JSON.stringify(theProduct),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          console.log("Added");
+          props.history.push("/products");
+        });
+    }
+  };
 
   return (
     <>
