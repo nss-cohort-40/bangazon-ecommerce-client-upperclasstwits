@@ -34,6 +34,25 @@ const ProductDetail = (props) => {
         });
     }
   };
+  const addToCart = () => {
+    fetch("http://localhost:8000/products/cart", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Token ${localStorage.getItem("bangazon_token")}`,
+      },
+      body: JSON.stringify({
+        product_id: product.id,
+        price: product.price,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        console.log("Added");
+        props.history.push("/products/cart");
+      });
+  };
   useEffect(getProduct, []);
 
   return (
@@ -45,8 +64,7 @@ const ProductDetail = (props) => {
       <p>Quantity: {product.quantity} </p>
       <p>Location: {product.location}</p>
       <p>Product Type: {productType.name}</p>
-      {/* onClick={addToItinerary} */}
-      <button>Add item to cart</button>
+      <button onClick={addToCart}>Add item to cart</button>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 const Cart = (props) => {
   // Create a state variable for Cart items - useState()
   const [cartList, setCartList] = useState([]);
@@ -18,7 +18,7 @@ const Cart = (props) => {
 
       // Store itinerary items in state variable
       .then((allTheItems) => {
-        console.table(allTheItems);
+        // console.table(allTheItems);
         setCartList(allTheItems);
       });
   };
@@ -27,7 +27,10 @@ const Cart = (props) => {
   // Create HTML representation with JSX
   return (
     <>
-      <h2>My Cart Products</h2>
+      <h2>My Cart</h2>
+      <Link to={`/products`}>
+        <button>Back to All Products</button>
+      </Link>
       <div>
         {cartList.map((item) => {
           return (
