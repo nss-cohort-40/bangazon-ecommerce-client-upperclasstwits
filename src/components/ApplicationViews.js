@@ -15,16 +15,7 @@ const ApplicationViews = () => {
 			<Route
 				path="/"
 				render={(props) => {
-					return (
-						<>
-							<h1>BANGAZON!</h1>
-							<img
-								className="logobang"
-								src={require("../Bangazon.png")}
-								alt="logo"
-							/>
-						</>
-					);
+					return <></>;
 				}}
 			/>
 
@@ -62,7 +53,7 @@ const ApplicationViews = () => {
 				}}
 			/>
 			<Route
-				path="/products/sell-product"
+				path="/sell-product"
 				render={(props) => {
 					return <ProductForm {...props} />;
 				}}
