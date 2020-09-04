@@ -5,9 +5,7 @@ const PaymentTypeForm = (props) => {
 	const [payment, setPayment] = useState({
 		merchant_name: "",
 		account_number: "",
-		customer_id: "",
 		expiration_date: "",
-		paymenttypeId: "",
 	});
 	const [paymentTypes, setPaymentTypes] = useState([]);
 	const { isAuthenticated } = useSimpleAuth();
@@ -44,21 +42,17 @@ const PaymentTypeForm = (props) => {
 		if (
 			payment.merchant_name === "" ||
 			payment.account_number === "" ||
-			payment.created_date === "" ||
-			payment.customer_id === "" ||
-			payment.expiration_date === "" ||
-			payment.paymenttypeId === ""
+			payment.expiration_date === ""
 		) {
 			window.alert("You gotta pay, yo!!!!!");
 		} else {
 			const thepayment = {
 				merchant_name: payment.merchant_name,
 				account_number: payment.account_number,
-				experiation_date: payment.expiration_date,
-				paymenttypeId: parseInt(payment.paymenttypeId),
+				expiration_date: payment.expiration_date,
 			};
 
-			fetch("http://localhost:8000/payments", {
+			fetch("http://localhost:8000/paymenttype", {
 				method: "POST",
 				headers: {
 					Accept: "application/json",
@@ -70,7 +64,7 @@ const PaymentTypeForm = (props) => {
 				.then((response) => response.json())
 				.then(() => {
 					console.log("Added");
-					props.history.push("/payments");
+					props.history.push("/");
 				});
 		}
 	};

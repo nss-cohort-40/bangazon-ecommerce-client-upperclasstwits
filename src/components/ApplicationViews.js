@@ -8,6 +8,7 @@ import ProductList from "./product/ProductList";
 import ProductForm from "./product/ProductForm";
 import ProductDetail from "./product/ProductDetail";
 import Cart from "./cart/Cart";
+import PaymentTypeForm from "./profile/PaymentTypeForm";
 
 const ApplicationViews = () => {
 	return (
@@ -56,6 +57,12 @@ const ApplicationViews = () => {
 				path="/sell-product"
 				render={(props) => {
 					return <ProductForm {...props} />;
+				}}
+			/>
+			<Route
+				path="/payments/form"
+				render={(props) => {
+					return <PaymentTypeForm {...props} />;
 				}}
 			/>
 			<Route
