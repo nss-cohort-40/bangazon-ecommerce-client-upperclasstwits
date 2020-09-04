@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.min.css"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
+<<<<<<< HEAD
+=======
+import "./Nav.css";
+>>>>>>> master
 
 const NavBar = (props) => {
   const { isAuthenticated, logout } = useSimpleAuth();
@@ -9,6 +13,11 @@ const NavBar = (props) => {
   return (
     <nav>
       <ul>
+        <img
+          className="logobang"
+          src={require("../../Bangazon.png")}
+          alt="logo"
+        />
         <li>
           <Link to="/">Bangazon</Link>
         </li>
