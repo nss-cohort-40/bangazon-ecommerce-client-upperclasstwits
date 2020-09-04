@@ -55,14 +55,14 @@ const ApplicationViews = () => {
 				render={(props) => {
 					return (
 						<ProductDetail
-							productId={parseInt(props.match.params.productId)}
+							productId={props.match.params.productId}
 							{...props}
 						/>
 					);
 				}}
 			/>
 			<Route
-				path="/sell-product"
+				path="/products/sell-product"
 				render={(props) => {
 					return <ProductForm {...props} />;
 				}}
