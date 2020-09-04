@@ -5,9 +5,8 @@ const PaymentTypeForm = (props) => {
 	const [payment, setPayment] = useState({
 		merchant_name: "",
 		account_number: "",
-		created_date: "",
 		customer_id: "",
-		experiation_date: "",
+		expiration_date: "",
 		paymenttypeId: "",
 	});
 	const [paymentTypes, setPaymentTypes] = useState([]);
@@ -47,7 +46,7 @@ const PaymentTypeForm = (props) => {
 			payment.account_number === "" ||
 			payment.created_date === "" ||
 			payment.customer_id === "" ||
-			payment.experiation_date === "" ||
+			payment.expiration_date === "" ||
 			payment.paymenttypeId === ""
 		) {
 			window.alert("You gotta pay, yo!!!!!");
@@ -55,8 +54,7 @@ const PaymentTypeForm = (props) => {
 			const thepayment = {
 				merchant_name: payment.merchant_name,
 				account_number: payment.account_number,
-				customer_id: payment.customer_id,
-				experiation_date: payment.experiation_date,
+				experiation_date: payment.expiration_date,
 				paymenttypeId: parseInt(payment.paymenttypeId),
 			};
 
@@ -99,37 +97,15 @@ const PaymentTypeForm = (props) => {
 							placeholder="Account Number"
 							value={payment.account_number}
 						/>
-						<label htmlFor="Created Date">Price</label>
+						<label htmlFor="expiration_date">Expiration Date</label>
 						<input
 							type="text"
 							required
 							onChange={handleFieldChange}
-							id="description"
-							placeholder="payment Description"
-							value={payment.description}
+							id="expiration_date"
+							placeholder="Expiration Date"
+							value={payment.expiration_date}
 						/>
-						<label htmlFor="description">Description</label>
-						<input
-							type="text"
-							required
-							onChange={handleFieldChange}
-							id="quantity"
-							placeholder="Quantity"
-							value={payment.quantity}
-						/>
-						<label htmlFor="quanntity">Quantity Available</label>
-						<select
-							value={payment.paymentTypeId}
-							id="paymentTypeId"
-							onChange={handleFieldChange}
-						>
-							<option value="">payment Category</option>
-							{paymentTypes.map((paymentType) => (
-								<option key={paymentType.id} value={paymentType.id}>
-									{paymentType.name}
-								</option>
-							))}
-						</select>
 					</div>
 					<div className="alignRight">
 						<button type="button" onClick={constructNewpayment}>
