@@ -30,22 +30,41 @@ const ProductDetail = (props) => {
           // console.table(customer);
           // THe .product_type has to match what's coming from API
           setProductType(product.product_type);
-
           setProduct(product);
         });
     }
+  };
+  const addToCart = () => {
+    fetch("http://localhost:8000/products/cart", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Token ${localStorage.getItem("bangazon_token")}`,
+      },
+      body: JSON.stringify({
+        product_id: product.id,
+        price: product.price,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        console.log("Added");
+        props.history.push("/products/cart");
+      });
   };
   useEffect(getProduct, []);
 
   return (
     <>
       <h1>Title: {product.title} </h1>
-      {/* <p>Customer: {product.customer.user.first_name}</p> */}
+      <p>Customer: {product.customer.user.first_name}</p>
       <p>Price: ${product.price}</p>
       <p>Description: {product.description}</p>
-      {/* <p>Quantity: {product.quantity} </p> */}
-      {/* <p>Location: {product.location}</p> */}
-      {/* <p>Product Type: {productType.name}</p> */}
+      <p>Quantity: {product.quantity} </p>
+      <p>Location: {product.location}</p>
+      <p>Product Type: {productType.name}</p>
+      <button onClick={addToCart}>Add item to cart</button>
     </>
   );
 };

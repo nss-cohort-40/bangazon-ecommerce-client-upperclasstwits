@@ -31,7 +31,7 @@ const NavBar = (props) => {
           <Link to="/my-profile">Profile</Link>
         </li>
         <li>
-          <Link to="/cart">Cart</Link>
+          <Link to="/products/cart">Cart</Link>
         </li>
         {isAuthenticated() ? (
           <li className="nav-item">
