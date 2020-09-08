@@ -10,7 +10,7 @@ const ProductForm = (props) => {
     quantity: "",
     location: "",
     // image_path: "",
-    productTypeId: "",
+    product_type_id: "",
   });
   const [productTypes, setProductTypes] = useState([]);
   const { isAuthenticated } = useSimpleAuth();
@@ -49,7 +49,7 @@ const ProductForm = (props) => {
       product.price === "" ||
       product.description === "" ||
       product.quantity === "" ||
-      product.productTypeId === ""
+      product.product_type_id === ""
     ) {
       window.alert(
         "Please complete title, price, description, quantity, and category"
@@ -62,7 +62,7 @@ const ProductForm = (props) => {
         quantity: product.quantity,
         location: product.location,
         // image_path: product.image_path,
-        productTypeId: parseInt(product.productTypeId),
+        product_type_id: parseInt(product.product_type_id),
       };
 
       fetch("http://localhost:8000/products", {
@@ -124,8 +124,8 @@ const ProductForm = (props) => {
             />
             <label htmlFor="quanntity">Quantity Available</label>
             <select
-              value={product.productTypeId}
-              id="productTypeId"
+              value={product.product_type_id}
+              id="product_type_id"
               onChange={handleFieldChange}
             >
               <option value="">Product Category</option>
